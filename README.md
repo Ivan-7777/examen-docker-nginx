@@ -8,7 +8,7 @@ Backends (Apache x2): Dos servidores httpd que sirven el contenido estático de 
 Red Interna: Una red tipo bridge que aísla los servidores Apache del acceso directo desde el host.
 
 Volumen Compartido: Una carpeta local ./html vinculada a ambos backends para garantizar la consistencia del contenido.
-
+```
       FLUJO DE LA INFRAESTRUCTURA
       =============================
 
@@ -29,6 +29,7 @@ Volumen Compartido: Una carpeta local ./html vinculada a ambos backends para gar
           \______________/
                  |
         [ Carpeta ./html ] <-- Volumen compartido
+```
 
 2. Requisitos Previos
 Docker Desktop instalado y en funcionamiento.
@@ -36,15 +37,15 @@ Docker Desktop instalado y en funcionamiento.
 Docker Compose.
 
 Carpeta del proyecto con la siguiente estructura:
-
+```
 /nginx-proxy
 ├── docker-compose.yml       # Orquestador de servicios
-├── default.conf             # Configuración de balanceo y caché
+├── default.conf             # Configuración de balanceo
 └── /html                    # Carpeta compartida (Volumen)
     ├── index.html           # Página principal
     ├── imagen-practica.jpg  # Recursos multimedia
     └── video-demo.mp4       # Recursos multimedia
-
+```   
 3. Configuración de los Ficheros
 3.1. Docker Compose
 El archivo docker-compose.yml define la orquestación de los servicios, la red red-interna y los volúmenes compartidos.
