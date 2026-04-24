@@ -37,9 +37,6 @@ Docker Compose.
 
 Carpeta del proyecto con la siguiente estructura:
 
-ESTRUCTURA DEL PROYECTO
-=======================
-
 /nginx-proxy
 ├── docker-compose.yml       # Orquestador de servicios
 ├── default.conf             # Configuración de balanceo y caché
