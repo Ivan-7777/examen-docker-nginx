@@ -37,12 +37,16 @@ Docker Compose.
 
 Carpeta del proyecto con la siguiente estructura:
 
+ESTRUCTURA DEL PROYECTO
+=======================
+
 /nginx-proxy
-├── docker-compose.yml
-├── default.conf
-└── /html
-    ├── index.html
-    └── (archivos multimedia)
+├── docker-compose.yml       # Orquestador de servicios
+├── default.conf             # Configuración de balanceo y caché
+└── /html                    # Carpeta compartida (Volumen)
+    ├── index.html           # Página principal
+    ├── imagen-practica.jpg  # Recursos multimedia
+    └── video-demo.mp4       # Recursos multimedia
 
 3. Configuración de los Ficheros
 3.1. Docker Compose
