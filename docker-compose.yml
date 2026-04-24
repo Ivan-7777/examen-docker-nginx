@@ -1,0 +1,39 @@
+services:
+  # El Proxy Inverso (Nginx)
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80" # Único punto de entrada
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - apache1
+      - apache2
+    networks:
+      - red-interna
+
+  # Nodo 1 de Apache
+  apache1:
+    image: httpd:2.4
+    container_name: apache1
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/:ro # Volumen compartido
+    networks:
+      - red-interna
+    # Aislamiento exterior
+
+  # Nodo 2 de Apache
+  apache2:
+    image: httpd:2.4
+    container_name: apache2
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/:ro # Volumen compartido
+    networks:
+      - red-interna
+    # Aislamiento exterior
+
+# Red interna añadida
+networks:
+  red-interna:
+    driver: bridge
