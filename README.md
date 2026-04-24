@@ -9,7 +9,7 @@ Red Interna: Una red tipo bridge que aísla los servidores Apache del acceso dir
 
 Volumen Compartido: Una carpeta local ./html vinculada a ambos backends para garantizar la consistencia del contenido.
 
-FLUJO DE LA INFRAESTRUCTURA
+      FLUJO DE LA INFRAESTRUCTURA
       =============================
 
           USUARIO (Navegador)
