@@ -9,15 +9,26 @@ Red Interna: Una red tipo bridge que aísla los servidores Apache del acceso dir
 
 Volumen Compartido: Una carpeta local ./html vinculada a ambos backends para garantizar la consistencia del contenido.
 
-USUARIO (Navegador)
-              |
-       [ Puerto 80 ] <--- Único punto de entrada
-              |
-      [ NGINX (Proxy) ] 
-       /             \
- [ Apache 1 ]    [ Apache 2 ] <--- Backends aislados
-      \              /
-       [ Carpeta HTML ] <--- Contenido compartido
+FLUJO DE LA INFRAESTRUCTURA
+      =============================
+
+          USUARIO (Navegador)
+                 |
+          [ Puerto: 80 ]  <-- Único acceso
+                 |
+        +------------------+
+        |  NGINX (Proxy)   | <-- Balanceador
+        +------------------+
+           /            \
+    (Red Interna)    (Red Interna)
+         /                \
+  +-----------+      +-----------+
+  | APACHE 1  |      | APACHE 2  |
+  +-----------+      +-----------+
+         \                /
+          \______________/
+                 |
+        [ Carpeta ./html ] <-- Volumen compartido
 
 2. Requisitos Previos
 Docker Desktop instalado y en funcionamiento.
