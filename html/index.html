@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apache HTTP Server - Práctica Proxy Inverso</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #333; }
+  header { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 2.5rem; text-align: center; }
+  header h1 { font-size: 2.5rem; }
+  header p { opacity: 0.85; margin-top: 0.5rem; }
+  nav { background: #1f2937; display: flex; justify-content: center; gap: 1rem; padding: 0.8rem; position: sticky; top: 0; z-index: 1000; }
+  nav a { color: #fff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 4px; transition: 0.3s; }
+  nav a:hover { background: #374151; }
+  .container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .card h2 { color: #1e3a8a; margin-bottom: 1rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
+  .stat { text-align: center; padding: 1rem; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; }
+  .stat strong { font-size: 1.5rem; color: #2563eb; }
+  
+  /* Estilos para multimedia */
+  .media-container { text-align: center; margin-top: 1rem; }
+  img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid #ddd; }
+  video { width: 100%; border-radius: 6px; background: #000; }
+  
+  footer { text-align: center; padding: 3rem; color: #6b7280; font-size: 0.85rem; }
+  .highlight { color: #2563eb; font-weight: bold; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Servidor Apache HTTP</h1>
+    <p>Infraestructura Docker: Balanceo de Carga y Memoria Caché</p>
+  </header>
+  
+  <nav>
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#multimedia">Multimedia</a>
+    <a href="#estado">Estado</a>
+  </nav>
+
+  <div class="container">
+    <div class="card" id="arquitectura">
+      <h2>Arquitectura de la Práctica</h2>
+      <p>Este nodo Apache funciona como uno de los <span class="highlight">dos backends</span> configurados. Las peticiones son gestionadas por un proxy inverso <strong>Nginx</strong> que aplica un algoritmo de balanceo <span class="highlight">Round Robin</span>.</p>
+      <p style="margin-top: 10px;">El contenido que estás viendo se sirve desde un <strong>volumen compartido</strong>, asegurando que ambos nodos web muestren la misma información sincronizada.</p>
+    </div>
+
+    <div class="card" id="multimedia">
+      <h2>Contenido Multimedia</h2>
+      <p>Tal como requiere la práctica, se incluyen elementos multimedia servidos desde el volumen:</p>
+      <div class="media-container">
+        <p><strong>Imagen del proyecto:</strong></p>
+        <img src="imagen-practica.jpg" alt="Infraestructura Docker Compose">
+        
+        <p style="margin-top: 20px;"><strong>Vídeo de demostración:</strong></p>
+        <video controls>
+          <source src="video-demo.mp4" type="video/mp4">
+          Tu navegador no soporta el formato de vídeo.
+        </video>
+      </div>
+    </div>
+
+    <div class="card" id="estado">
+      <h2>Estado del Nodo</h2>
+      <div class="stats">
+        <div class="stat"><strong>ACTIVO</strong><br>Estado</div>
+        <div class="stat"><strong>HTTP/1.1</strong><br>Protocolo</div>
+        <div class="stat"><strong>HIT/MISS</strong><br>Proxy Cache</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Evidencias para la Entrega</h2>
+      <p>Para demostrar el funcionamiento, revisa las cabeceras HTTP de esta respuesta:</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><code>X-Backend-Server</code>: Indica qué contenedor Apache ha respondido.</li>
+        <li><code>X-Proxy-Cache</code>: Indica si el contenido proviene de la caché de Nginx.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 &mdash; 0378 SADASIC &mdash; Institut El Calamot
+  </footer>
+</body>
+</html>
